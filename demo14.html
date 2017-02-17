@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>class与style绑定-绑定内联样式</title>
+</head>
+<body>
+<div id="app">
+    <div v-bind:style="{color:activeColor,fontSize:fontSize+'px'}">
+        绑定内联样式
+    </div>
+</div>
+
+<h1>直接绑定到对象上</h1>
+<div id="app2">
+    <div v-bind:style="styleObject">绑定内联样式2</div>
+    <div v-bind:style="[styleObject,styleObject2]">内联样式3</div>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            activeColor: 'red',
+            fontSize: 24
+        }
+    });
+
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            styleObject: {
+                color: 'blue',
+                fontSize: 30 + 'px'
+            },
+            styleObject2: {
+                width: '100px',
+                height: '100px',
+                background: 'yellow',
+                transform: 'rotate(36deg)'
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class与style绑定-数组语法</title>
+    <style>
+        h1 {
+            font-size: 24px;
+        }
+
+        .active {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div v-bind:class="[{active:isActive},errorClass]">样式一</div>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            errorClass: {
+                error: true
+            }
+        }
+    });
+</script>
+</body>
+</html>

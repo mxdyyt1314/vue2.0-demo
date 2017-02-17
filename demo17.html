@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染v-show</title>
+</head>
+<body>
+<div id="app">
+    <div v-show="logintype==='username'">
+        <label for="">username</label>
+        <input type="text" placeholder="Enter your username" key="username-input">
+    </div>
+    <button @click="changeLoginType">show/hide</button>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            logintype: 'username'
+        },
+        methods: {
+            changeLoginType: function () {
+                if (this.logintype === 'username') {
+                    this.logintype = 'email';
+                }
+                else {
+                    this.logintype = 'username';
+                }
+            }
+        }
+    });
+</script>
+</body>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class与style绑定-用在组件上</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <my-component class="baz boo" v-bind:class="{active:isActive}"></my-component>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.component('my-component', {
+        template: '<p class="foo bar">Hi</p>'
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            isActive: true
+        }
+    });
+</script>
+</html>

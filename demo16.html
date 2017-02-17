@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染-使用key控制元素可用性</title>
+</head>
+<body>
+<div id="app">
+    <template v-if="logintype==='username'">
+        <label for="">username</label>
+        <input type="text" placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+        <label for="">Email</label>
+        <input type="text" placeholder="Enter your email" key="email-input">
+    </template>
+    <button @click="changeLoginType">Change Login Type</button>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            logintype: 'username'
+        },
+        methods: {
+            changeLoginType: function () {
+                if (this.logintype === 'username') {
+                    this.logintype = 'email';
+                }
+                else {
+                    this.logintype = 'username';
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
