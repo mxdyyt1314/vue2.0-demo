@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>class与style绑定</title>
+    <style>
+        h1 {
+            font-size: 24px;
+        }
+        
+        .active {
+            font-weight: bold;
+        }
+        
+        .static {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>绑定HTML Class</h1>
+    <div id="app-1">
+        <div class="static" v-bind:class="{active:isActive}">动态改变css样式</div>
+        <div v-bind:class="activeClass">css样式2</div>
+        <button @click="changeStyle">改变样式</button>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var vm1 = new Vue({
+            el: '#app-1',
+            data: {
+                isActive: true,
+                activeClass: {
+                    active: true,
+                    static: false
+                }
+            },
+            methods: {
+                changeStyle: function () {
+                    this.isActive = !this.isActive;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

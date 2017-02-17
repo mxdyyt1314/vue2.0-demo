@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs是什么？</title>
+</head>
+
+<body>
+    <div id="app">{{message}}</div>
+    <div id="app-2">
+        <span v-bind:title="message">
+            Hover your mouse over me for a few seconds to see my dynamically bound title!
+        </span>
+    </div>
+    <div id="app-3">
+        <p v-if="seen">Now you see me.</p>
+        <button v-on:click="showOrHide">show/hide</button>
+    </div>
+    <div id="app-4">
+        <ul>
+            <li v-for="todo in todos">{{todo.text}}</li>
+        </ul>
+    </div>
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+    <div id="app-6">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+    </div>
+    <div id="app-7">
+        <todo-item v-for="student in students" v-bind:student="student"></todo-item>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: 'hello vue'
+        }
+    });
+
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: 'You loaded this page on ' + new Date()
+        }
+    });
+    app2.message = "some new message";
+
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: true
+        },
+        methods: {
+            showOrHide: function () {
+                if (this.seen) {
+                    this.seen = false;
+                } else {
+                    this.seen = true;
+                }
+            }
+        }
+    });
+
+    var app4 = new Vue({
+        el: "#app-4",
+        data: {
+            todos: [{
+                text: 'javascript'
+            }, {
+                text: 'html'
+            }, {
+                text: 'hello world'
+            }]
+        }
+    });
+
+    var app5 = new Vue({
+        el: "#app-5",
+        data: {
+            message: 'hello vue.js'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    });
+
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'hello vue.js'
+        }
+    });
+
+    Vue.component('todo-item', {
+        props: ['student'],
+        template: '<li>{{student.name}}</li>'
+        // template:'<li>a todo item</li>'
+    })
+
+    var app7 = new Vue({
+        el: '#app-7',
+        data: {
+            students: [{
+                name: 'china'
+            }, {
+                name: 'janpanese'
+            }, {
+                name: 'America'
+            }]
+        }
+    });
+</script>
+
+</html>

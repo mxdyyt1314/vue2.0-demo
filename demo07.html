@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法v-缩写</title>
+    <style>
+        h1 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-bind缩写</h1>
+    <div id="app-1">
+        <a v-bind:href="url">百度链接</a>
+        <a :href="url">百度链接</a>
+    </div>
+    <h1>v-on缩写</h1>
+    <div id="app-2">
+        <button v-on:click="doSomething">doSomething</button>
+        <button @click="doSomething">doSomething</button>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var vm1 = new Vue({
+            el: "#app-1",
+            data: {
+                url: 'http://www.baidu.com'
+            }
+        });
+        var vm2 = new Vue({
+            el: "#app-2",
+            methods: {
+                doSomething: function () {
+                    alert('点击事件');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

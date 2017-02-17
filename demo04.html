@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法-插值</title>
+    <style lang="">
+        h1 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>文本-once执行一次性插值</h1>
+    <div id="app-1">
+        <p v-once>this will never change: {{msg}}</p>
+    </div>
+    <h1>纯HTML</h1>
+    <div id="app-2">
+        <p v-html="rawHtml"></p>
+    </div>
+    <h1>属性-用v-bind来绑定</h1>
+    <div id="app-3">
+        <button v-bind:id="dynamicId" v-bind:disabled="condition">BUTTON</button>
+    </div>
+    <h1>使用javascript表达式-只能包含单个表达式</h1>
+    <div id="app-4">
+        <p>{{message.split('').reverse().join('')}}</p>
+        <p>{{true?'yes':'no'}}</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var vm1 = new Vue({
+            el: '#app-1',
+            data: {
+                msg: 'vuejs'
+            }
+        });
+
+        var vm2 = new Vue({
+            el: "#app-2",
+            data: {
+                rawHtml: '<p>this is a <strong>strong text</strong>'
+            }
+        });
+        var vm3 = new Vue({
+            el: "#app-3",
+            data: {
+                dynamicId: 'dynamicId' + new Date(),
+                condition: true
+            }
+        });
+        var vm4 = new Vue({
+            el: "#app-4",
+            data: {
+                message: 'hello world'
+            }
+        });
+    </script>
+</body>
+
+</html>

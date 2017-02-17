@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法-指令</title>
+    <style lang="">
+        h1 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>参数</h1>
+    <div id="app-1">
+        <a v-bind:href="url">链接</a>
+        <a href="javascript:void(0)" v-on:click="doSomething">点击</a>
+    </div>
+    <h1>v-if指令</h1>
+    <div id="app-2">
+        <p v-if="seen">我可以消失，也可以出现</p>
+        <button v-on:click="showOrHide">{{buttonName}}</button>
+    </div>
+    <h1>修饰符</h1>
+    <div id="app-3">
+        <form v-on:submit.prevent="onSubmit">
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        var vm1 = new Vue({
+            el: '#app-1',
+            data: {
+                url: 'http://www.baidu.com',
+            },
+            methods: {
+                doSomething: function () {
+                    alert("点击事件");
+                }
+            }
+        });
+
+        var vm2 = new Vue({
+            el: '#app-2',
+            data: {
+                seen: true,
+                buttonName: 'hide'
+            },
+            methods: {
+                showOrHide: function () {
+                    if (this.seen) {
+                        this.seen = false;
+                        this.buttonName = 'show';
+                    } else {
+                        this.seen = true;
+                        this.buttonName = 'hide';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
