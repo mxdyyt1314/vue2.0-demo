@@ -3,11 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>列表渲染v-for</title>
+    <style>
+        .divider {
+            height: 2px;
+            background: #000;
+            list-style:none;
+        }
+        .divider:last-of-type{
+            height:0;
+        }
+    </style>
 </head>
 <body>
+<ul id="app-1">
+    <li v-for="item in items">{{item.message}}</li>
+</ul>
+
+<ul id="app-2">
+    <li v-for="(item,index) in items">
+        {{parentMessage}} - {{index}} - {{item.message}}
+    </li>
+</ul>
+
+<ul id="app-3">
+    <template v-for="item in items">
+        <li>{{item.message}}</li>
+        <li class="divider"></li>
+    </template>
+</ul>
 
 <script src="js/vue.js"></script>
 <script>
+
+    var vm1 = new Vue({
+        el: '#app-1',
+        data: {
+            items: [{message: 'javascript'},
+                {message: 'html'},
+                {message: 'css3'}]
+        }
+    });
+
+    var vm2 = new Vue({
+        el: '#app-2',
+        data: {
+            parentMessage: "parentMessage",
+            items: [
+                {message: "Foo"},
+                {message: "Bar"}
+            ]
+        }
+    });
+
+    var vm3 = new Vue({
+        el: '#app-3',
+        data: {
+            items: [{message: "Foo"}, {message: "Bar"}]
+        }
+    });
+
 
 </script>
 </body>

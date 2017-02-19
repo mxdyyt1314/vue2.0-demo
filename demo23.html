@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染-任务管理</title>
+    <style>
+        * {
+            font-size: 22px;
+        }
+
+        .selected {
+            color: gray;
+            text-decoration: line-through;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-on:keyup.enter="addNewTodo" placeholder="添加新任务" v-model="newTask">
+    <ul>
+        <li is="todo-item" v-for="(todo,index) in todos" v-bind:task="todo.title"
+            v-on:selectmask="selectMask(todo)" v-bind:key="todo.id" v-bind:selected="todo.selected"></li>
+    </ul>
+    <button @click="mytest">Test</button>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.component('todo-item', {
+        props: ['task', 'selected'],
+        template: '<li>' +
+        '<input type="checkbox" v-on:click="$emit(\'selectmask\')">' +
+        '<span v-bind:class="{selected:selected}">{{task}}</span>' +
+        '</li>'
+    });
+
+    var vm = new Vue({
+            el: '#app',
+            data: {
+                newTask: '',
+                todos: [
+                    {id: 1, title: '去面试', selected: false},
+                    {id: 2, title: '厨房做饭', selected: false},
+                    {id: 3, title: '洗澡去', selected: false}
+                ]
+            },
+            methods: {
+                addNewTodo: function () {
+                    this.todos.push({
+                        id: parseInt(Math.random() * 1000), title: this.newTask, selected: false
+                    });
+                    this.newTask = '';
+                },
+                selectMask: function (todo) {
+                    todo.selected = !todo.selected;
+                },
+                mytest: function () {
+                    console.log('test');
+//                    this.todos = [{id: 200, title: '哈哈一笑', selected: true}];
+//                    this.todos[0] = {id: 200, title: '哈哈一笑', selected: true};
+                    Vue.set(this.todos,0,{id: 200, title: '哈哈一笑', selected: true});
+                }
+            }
+        })
+        ;
+</script>
+</body>
+</html>

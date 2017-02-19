@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理器-按键修饰符</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-on:keyup.alt.enter="enterKey">
+</div>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        methods: {
+            enterKey: function () {
+                console.log('enter');
+            },
+            rightKey: function () {
+                console.log('move right');
+            }
+        }
+    });
+</script>
+</body>
+</html>

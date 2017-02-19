@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染-对象迭代</title>
+</head>
+<body>
+<ul id="app-1">
+    <li v-for="(value,key,index) in Person">
+       {{index}}. {{key}} : {{value}}
+    </li>
+</ul>
+
+<script src="js/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el: '#app-1',
+        data: {
+            Person: {
+                name: '孟旭东',
+                age: 26,
+                job: 'programmer'
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

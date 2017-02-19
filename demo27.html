@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监听事件-方法事件处理器</title>
+</head>
+<body>
+<div id="example-2">
+    <button @click="greet">greet</button>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#example-2',
+        data: {
+            name: '孟旭东'
+        },
+        methods: {
+            greet: function (event) {
+                alert('hello ' + this.name + '!');
+                alert(event.target.tagName);
+                console.log(event);
+            }
+        }
+    });
+</script>
+</body>
+</html>

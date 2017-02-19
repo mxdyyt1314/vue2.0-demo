@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录系统</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <label for="">账号：</label>
+        <input type="text" placeholder="请输入账号" v-model="username" v-on:keyup.enter="login">
+    </div>
+    <div>
+        <label for="">密码：</label>
+        <input type="password" placeholder="请输入密码" v-model="password" v-on:keyup.enter="login">
+    </div>
+    <div v-if="showinfo">{{loginMsg}}</div>
+    <button v-on:click="login">登录</button>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            username: '',
+            password: '',
+            showinfo: false,
+            loginMsg: ''
+        },
+        methods: {
+            login: function () {
+                this.showinfo = true;
+                if (this.username && this.password) {
+                    this.loginMsg = '登录成功';
+                }
+                else if (!this.username) {
+                    this.loginMsg = '请输入账号';
+                }
+                else if (!this.password) {
+                    this.loginMsg = '请输入密码';
+                }
+                else {
+                    this.loginMsg = '未知错误';
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

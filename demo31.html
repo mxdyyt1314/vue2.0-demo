@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理器-聊天室</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input type="checkbox" v-model="sendByEnter">send by enter
+        <input type="checkbox" v-model="sendByCtrlEnter">send by ctrlEnter
+    </div>
+    <section>
+        <ul>
+            <li v-for="msg in msglist">{{msg}}</li>
+        </ul>
+    </section>
+    <section>
+        <input type="text" v-if="sendByEnter" v-model="newMsg" v-on:keyup.enter="sendMsg" placeholder="enter发送">
+        <input type="text" v-if="sendByCtrlEnter" v-model="newMsg" @keyup.ctrl.enter="sendMsg"
+               placeholder="ctrl+enter发送">
+    </section>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            sendByEnter: true,
+            sendByCtrlEnter: false,
+            newMsg: '',
+            msglist: [
+                '111'
+            ]
+        },
+        methods: {
+            sendMsg: function () {
+                this.msglist.push(this.newMsg);
+                this.newMsg = '';
+            }
+        },
+        watch: {
+            sendByEnter: function () {
+                this.sendByCtrlEnter = !this.sendByEnter;
+            },
+            sendByCtrlEnter: function () {
+                this.sendByEnter = !this.sendByCtrlEnter;
+            }
+        }
+    });
+</script>
+</body>
+</html>

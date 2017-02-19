@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理器-事件修饰符</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            background: skyblue;
+        }
+
+        .smallbox {
+            width: 200px;
+            height: 200px;
+            background: darkslategray;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--.prevent阻止默认事件-->
+    <form v-on:submit.prevent="onSubmit">
+        <input type="submit" value="submit">
+    </form>
+
+    <!--.stop阻止事件冒泡-->
+    <div class="box" @click="bigboxEvent">
+        <div class="smallbox" @click.stop="smallboxEvent"></div>
+    </div>
+    <br>
+    <!--.self只当事件在该元素本身（而不是子元素）触发时触发回调-->
+    <div class="box" @click.self="bigboxEvent">
+        <div class="smallbox" @click="smallboxEvent"></div>
+    </div>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        methods: {
+            onSubmit: function () {
+                console.log('submit');
+            },
+            bigboxEvent: function () {
+                console.log('big box event');
+            },
+            smallboxEvent: function () {
+                console.log('small box event');
+            }
+        }
+    });
+</script>
+</body>
+</html>
