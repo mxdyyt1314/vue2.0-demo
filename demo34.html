@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>表单控件绑定-绑定value</title>
 </head>
+
 <body>
+    <h1>复选框</h1>
+    <div id="app-1">
+        <input type="checkbox" v-model="toggle" v-bind:true-value="male" v-bind:false-value="female">ismale
+        <p>{{toggle}}</p>
+    </div>
+    <h1>单选按钮</h1>
+    <div id="app-2">
+        <input type="radio" v-model="pick" v-bind:value="a">male
+        <input type="radio" v-model="pick" v-bind:value="b">female
+        <p>{{pick}}</p>
+    </div>
+    <h1>选择列表设置</h1>
+    <div id="app-3">
+        <select v-model="selected">
+            <option v-bind:value="number1">{{number1}}</option>
+            <option v-bind:value="number2">{{number2}}</option>
+        </select>
+        <p>{{selected}}</p>
+    </div>
 
-
-<script src="js/vue.js"></script>
-<script>
-
-</script>
+    <script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app-1',
+            data: {
+                toggle: 'female',
+                male: 'male',
+                female: 'female'
+            }
+        });
+        var vm2 = new Vue({
+            el: '#app-2',
+            data: {
+                pick: 'female',
+                a: 'male',
+                b: 'female'
+            }
+        });
+        var vm3 = new Vue({
+            el: '#app-3',
+            data: {
+                number1: 'six',
+                number2: 'seven',
+                selected: 'seven'
+            }
+        });
+    </script>
 </body>
+
 </html>
