@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件-单向数据流</title>
+</head>
+<body>
+<h1>单向数据流</h1>
+<div id="app-1">
+    <div><label for="">子组件</label>
+        <my-component v-bind:message="message"></my-component>
+    </div>
+    <div>
+        <label for="">父组件</label>
+        <input type="text" v-model="message" title="">
+    </div>
+    <p>{{message}}</p>
+</div>
+
+<div id="app-2">
+    <msg v-bind:msg="msg"></msg>
+</div>
+
+<div id="app-3">
+    <msgbox v-bind:msg="msg"></msgbox>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.component('my-component', {
+        props: ['message'],
+        template: '<input type="text" v-model="message"/>'
+    });
+    var vm = new Vue({
+        el: '#app-1',
+        data: {
+            message: 'hello world'
+        }
+    });
+
+    Vue.component('msg', {
+        props: ['msg'],
+        template: '<div><input type="text" v-model="insideMsg"/><p>{{insideMsg}}</p></div>',
+        data: function () {
+            return {insideMsg: this.msg};
+        }
+    });
+    var vm2 = new Vue({
+        el: '#app-2',
+        data: {
+            msg: 'hello world'
+        }
+    });
+
+    Vue.component('msgbox', {
+        props: ['msg'],
+        computed: {
+            inMsg: function () {
+                return this.msg;
+            }
+        },
+        template: '<div>' +
+        '<input type="text" v-model="inMsg">' +
+        '<p>{{inMsg}}</p>' +
+        '</div>'
+    });
+    var vm3 = new Vue({
+        el: '#app-3',
+        data: {
+            msg: 'hello world'
+        }
+    });
+</script>
+</body>
+</html>

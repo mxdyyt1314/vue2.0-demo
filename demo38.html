@@ -7,44 +7,44 @@
 </head>
 
 <body>
-    <h1>使用Prop传递数据</h1>
-    <div id="app-1">
-        <child v-bind:message="message"></child>
-    </div>
-    <h1>camelCase vs. kebab-case</h1>
-    <div id="app-2">
-        <message-span v-bind:my-message="message"></message-span>
-    </div>
-    <h1>动态Prop</h1>
-    <div id="app-3">
-        
-    </div>
+<h1>使用Prop传递数据</h1>
+<div id="app-1">
+    <child v-bind:message="message"></child>
+</div>
+<h1>camelCase vs. kebab-case</h1>
+<div id="app-2">
+    <message-span v-bind:my-message="message"></message-span>
+</div>
+<h1>动态Prop</h1>
+<div id="app-3">
 
-    <script src="js/vue.js"></script>
-    <script>
-        Vue.component('child', {
-            props: ['message'],
-            template: '<span>{{message}}</span>'
-        });
+</div>
 
-        var vm = new Vue({
-            el: '#app-1',
-            data: {
-                message: 'hello!'
-            }
-        });
+<script src="js/vue.js"></script>
+<script>
+    Vue.component('child', {
+        props: ['message'],
+        template: '<span>{{message}}</span>'
+    });
 
-        Vue.component('messageSpan', {
-            props: ['myMessage'],
-            template: '<span>{{myMessage}}</span>'
-        });
-        var vm2 = new Vue({
-            el: '#app-2',
-            data: {
-                message: 'hello!'
-            }
-        });
-    </script>
+    var vm = new Vue({
+        el: '#app-1',
+        data: {
+            message: 'hello!'
+        }
+    });
+
+    Vue.component('messageSpan', {
+        props: ['myMessage'],
+        template: '<span>{{myMessage}}</span>'
+    });
+    var vm2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: 'hello!'
+        }
+    });
+</script>
 </body>
 
 </html>
