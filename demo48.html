@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>组件-作用域插槽</title>
 </head>
-<body>
-<div id="app">
-    <my-component>
-        <template scope="props">
-            <p>hello from parent</p>
-            <p>{{props.text}}</p>
-        </template>
-    </my-component>
-</div>
 
-<script src="js/vue.js"></script>
-<script>
-    Vue.component('my-component', {
-        template: '<div class="child">' +
-        '<slot text="hello from child"></slot>' +
-        '</div>'
-    });
-    var vm = new Vue({
-        el: '#app'
-    });
-</script>
+<body>
+    <div id="app">
+        <my-component>
+            <template scope="props">
+                <p>hello from parent</p>
+                <p>{{props.text}}</p>
+            </template>
+        </my-component>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: '<div class="child">' +
+                '<slot text="hello from child"></slot>' +
+                '</div>'
+        });
+        var vm = new Vue({
+            el: '#app'
+        });
+    </script>
 </body>
+
 </html>
