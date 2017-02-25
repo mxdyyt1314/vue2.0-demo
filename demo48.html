@@ -6,7 +6,12 @@
 </head>
 <body>
 <div id="app">
-    <my-component></my-component>
+    <my-component>
+        <template scope="props">
+            <p>hello from parent</p>
+            <p>{{props.text}}</p>
+        </template>
+    </my-component>
 </div>
 
 <script src="js/vue.js"></script>
